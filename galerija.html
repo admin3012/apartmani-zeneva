@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerija | Apartmani Zeneva</title>
+  <link rel="stylesheet" href="6b9db238-42b4-4ef2-8e7b-57d9cb51a785.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+   
+    .galerija-section {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff;
+      padding: 5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .galerija-section h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .galerija-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .galerija-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .galerija-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .galerija-item:hover img {
+      transform: scale(1.08);
+      filter: brightness(0.8);
+    }
+
+    .galerija-item::after {
+      content: "Pogledaj više";
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .galerija-item:hover::after {
+      opacity: 1;
+      bottom: 30px;
+    }
+
+   
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-lightbox:hover {
+      color: var(--accent-2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+
+    
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1001;
+}
+
+.hamburger .bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  position: relative;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hamburger .bar::before,
+.hamburger .bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.2s ease, top 0.2s ease, bottom 0.2s ease;
+}
+
+.hamburger .bar::before {
+  top: -7px;
+}
+
+.hamburger .bar::after {
+  bottom: -7px;
+}
+
+
+.hamburger.active .bar {
+  background: transparent;
+}
+
+.hamburger.active .bar::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.hamburger.active .bar::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background: #ffffff;
+  width: 240px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.mobile-nav.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-nav a:hover {
+  background: #f3f4f6;
+  color: var(--accent);
+}
+
+
+@media (max-width: 900px) {
+  nav {
+    display: none;
+  }
+  .hamburger {
+    display: inline-flex;
+  }
+}
+
+.galerija-section p.description {
+  max-width: 850px;
+  margin: 0 auto 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.galerija-section p.description:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+
+  </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+          <img src="logo.jpg" alt="Zeneva logo" class="logo">
+       
+        </div>
+      
+    
+        <nav>
+          <a href="index.html">Početna</a>
+          <a href="galerija.html">Galerija</a>
+          
+        </nav>
+      
+
+        <button class="hamburger" id="hamburger" aria-label="Otvori meni" aria-expanded="false">
+          <span class="bar"></span>
+        </button>
+      
+      
+        <div class="mobile-nav" id="mobileNav">
+          <a href="index.html">Početna</a>
+          <a href="galerija.html">Galerija</a>
+          
+        </div>
+      </header>
+      
+
+  <section class="galerija-section" id="galerija">
+    <h2>Galerija Apartmana</h2>
+    <p class="description">Pogledajte našu galeriju i osjetite atmosferu Velike plaže i prelijepog Ulcinja. Naši apartmani nalaze se na nekoliko koraka od mora — savršeno mjesto za odmor, mir i uživanje u suncu.</p>
+    <div class="galerija-grid">
+      <div class="galerija-item"><img src="slika1.jpg" alt="Apartman 1"></div>
+      <div class="galerija-item"><img src="slika10.jpg" alt="Apartman 2"></div>
+      <div class="galerija-item"><img src="slika14.jpg" alt="Apartman 3"></div>
+      <div class="galerija-item"><img src="slika15.jpg" alt="Apartman 4"></div>
+      <div class="galerija-item"><img src="slika17.jpg" alt="Apartman 5"></div>
+      <div class="galerija-item"><img src="slika19.jpg" alt="Apartman 6"></div>
+      <div class="galerija-item"><img src="hero.png" alt="Apartman 1"></div>
+      <div class="galerija-item"><img src="zgrada.jpg" alt="Apartman 2"></div>
+      <div class="galerija-item"><img src="slika17.jpg" alt="Apartman 3"></div>
+      <div class="galerija-item"><img src="slika16.jpg" alt="Apartman 4"></div>
+      <div class="galerija-item"><img src="slika12.jpg" alt="Apartman 5"></div>
+      <div class="galerija-item"><img src="wc.jpg" alt="Apartman 6"></div>
+      <div class="galerija-item"><img src="wc4.jpg" alt="Apartman 2"></div>
+      <div class="galerija-item"><img src="wc6.jpg" alt="Apartman 3"></div>
+      <div class="galerija-item"><img src="wc3.jpg" alt="Apartman 4"></div>
+      <div class="galerija-item"><img src="wc5.jpg" alt="Apartman 5"></div>
+      <div class="galerija-item"><img src="slika19.jpg" alt="Apartman 6"></div>
+      <div class="galerija-item"><img src="slika16.jpg" alt="Apartman 6"></div>
+    </div>
+  </section>
+
+ 
+  <div class="lightbox" id="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <img src="" alt="Slika uvećana">
+  </div>
+
+  <footer id="kontakt">
+    <div class="footer-content">
+      <img src="logo.jpg" alt="Apartmani Zeneva logo" class="footer-logo" loading="lazy">
+  
+      <div class="footer-links">
+        
+        <a href="https://www.instagram.com/apartmani_zeneva" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.428.403a4.92 4.92 0 011.74 1.09 4.92 4.92 0 011.09 1.741c.163.459.347 1.258.403 2.428.058 1.267.07 1.647.07 4.851s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.403 2.428a4.92 4.92 0 01-1.09 1.74 4.92 4.92 0 01-1.741 1.09c-.459.163-1.258.347-2.428.403-1.267.058-1.647.07-4.851.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.428-.403a4.92 4.92 0 01-1.74-1.09 4.92 4.92 0 01-1.09-1.741c-.163-.459-.347-1.258-.403-2.428C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.056-1.17.24-1.97.403-2.428a4.92 4.92 0 011.09-1.74 4.92 4.92 0 011.741-1.09c.459-.163 1.258-.347 2.428-.403C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.13 4.758.33 3.905.684a6.919 6.919 0 00-2.519 1.637A6.919 6.919 0 00.684 4.905C.33 5.758.13 6.775.072 8.052.013 9.332 0 9.741 0 12c0 2.259.013 2.668.072 3.948.058 1.277.258 2.294.612 3.147a6.919 6.919 0 001.637 2.519 6.919 6.919 0 002.519 1.637c.853.354 1.87.554 3.147.612C9.332 23.987 9.741 24 12 24s2.668-.013 3.948-.072c1.277-.058 2.294-.258 3.147-.612a6.919 6.919 0 002.519-1.637 6.919 6.919 0 001.637-2.519c.354-.853.554-1.87.612-3.147.059-1.28.072-1.689.072-3.948s-.013-2.668-.072-3.948c-.058-1.277-.258-2.294-.612-3.147a6.919 6.919 0 00-1.637-2.519A6.919 6.919 0 0019.095.684c-.853-.354-1.87-.554-3.147-.612C14.668.013 14.259 0 12 0z"/>
+            <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998z"/>
+            <circle cx="18.406" cy="5.594" r="1.44"/>
+          </svg>
+        </a>
+  
+        <a href="mailto:apartmanizeneva1@gmail.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.511l-8 5.011-8-5.011V6h16zm-16 12V8.489l7.445 4.66a1 1 0 001.11 0L20 8.489V18H4z"/>
+          </svg>
+        </a>
+  
+      
+        <a href="tel:+38269761184" aria-label="Telefon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 7a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z"/>
+          </svg>
+        </a>
+  
+     
+        <a href="https://www.google.com/maps/place/Apartmani+Zeneva/@41.9034468,19.3012071,17z/data=!3m1!4b1!4m6!3m5!1s0x134e1751d28f37a7:0x8d92400ec26886f0!8m2!3d41.9034469!4d19.306078!16s%2Fg%2F11kh2_x659?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" aria-label="Lokacija">
+          <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
+          </svg>
+        </a>
+      </div>
+  
+      <div class="footer-info">
+        <p>Rezervacija: +382 69 761 184 | +382 69 209 203 (Viber / WhatsApp)</p>
+        <p>Email: <a href="mailto:apartmanizeneva1@gmail.com">apartmanizeneva1@gmail.com</a></p>
+        <p>Lokacija: Ulcinj, Donji Stoj</p>
+      </div>
+  
+      <p class="footer-copy">© 2025 Apartmani Zeneva. Sva prava zadržana.</p>
+    </div>
+  </footer>
+
+  <script>
+   
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const closeBtn = document.querySelector('.close-lightbox');
+    const galleryItems = document.querySelectorAll('.galerija-item img');
+
+    galleryItems.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.classList.remove('active');
+    });
+
+   
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+ 
+  document.querySelectorAll('.mobile-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+ 
+
+</body>
+</html>
