@@ -78,7 +78,7 @@ const reviews = [
   { name: "Zoran", role: "Srbija", rating: 4, text: "Profesionalno... sve pohvale" },
   { name: "Stozinic", role: "Crna Gora", rating: 4, text: "Zadovoljavajuće, već drugi godinu smo koristili smještaj. -Parking. Parkirali smo auto preko puta kod komšije, što nije problem, ali ne znam kako to funkcioniše kad je veća gužva u sezoni. -Kablovska. Na TV su samo neki njemački satelitski programi, nema programa sa balkana." },
   { name: "Michael", role: "Njemačka", rating: 5, text: "Alles war so, wie wir es erwartet haben" },
-  { name: "Dino Alić", role: "QA Tester", rating: 4, text: "Lijepa animacija pri promjeni, djeluje profesionalno." },
+  
 ];
 
 // ===== SETTINGS =====
@@ -182,3 +182,4 @@ document.addEventListener("keydown", (e) => {
 render();
 
     
+
