@@ -1,318 +1,857 @@
-<!doctype html>
-<html lang="hr">
+<!DOCTYPE html>
+<html lang="bs">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apartmani Zeneva</title>
-<meta name="description" content="Apartmani Zeneva nude moderan smještaj uz more, s besplatnim Wi-Fi-em, privatnim parkingom, klimatizacijom i pogledom na more. Rezervirajte svoj savršen odmor još danas!">
-  <meta name="keywords" content="apartmani Zeneva, smještaj Hrvatska, apartmani uz more, privatni apartmani, odmor na moru, smještaj Biograd, apartmani Dalmacija, Zeneva apartmani, obiteljski odmor">
-  <meta name="author" content="Apartmani Zeneva">
-  <meta name="robots" content="index, follow">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apartmani Zeneva — Ulcinj, Crna Gora</title>
+<meta name="description" content="Apartmani Zeneva nude moderan smještaj u Ulcinju, 800m od Velike plaže. Besplatan Wi-Fi, parking, klima i pogled na more. Rezervišite odmah!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-deep: #0c4a47;
+    --teal: #14817b;
+    --teal-light: #5fc3b8;
+    --sand: #f6efe2;
+    --sand-deep: #ecddc0;
+    --cream: #fffdf8;
+    --coral: #e8895c;
+    --ink: #1c2b29;
+    --ink-soft: rgba(28,43,41,0.62);
+    --white: #ffffff;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', sans-serif;
+    --shadow: 0 20px 50px -20px rgba(12,74,71,0.25);
+  }
+  * , *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background:
+      radial-gradient(circle at 8% 12%, rgba(95,195,184,0.10), transparent 40%),
+      radial-gradient(circle at 92% 6%, rgba(232,137,92,0.08), transparent 38%),
+      radial-gradient(circle at 85% 60%, rgba(95,195,184,0.08), transparent 42%),
+      radial-gradient(circle at 4% 70%, rgba(232,137,92,0.06), transparent 40%),
+      var(--cream);
+    background-attachment: fixed;
+    color: var(--ink);
+    overflow-x: hidden;
+    font-weight: 400;
+    position: relative;
+  }
+  /* subtle wave texture watermark across whole page */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(12,74,71,0.035) 1px, transparent 1px);
+    background-size: 26px 26px;
+    opacity: .5;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  ::selection { background: var(--coral); color: var(--white); }
 
+  /* reusable floating ambient blobs */
+  .ambient-blob {
+    position: absolute; border-radius: 50%; filter: blur(4px);
+    pointer-events: none; z-index: 0;
+    animation: blobFloat 14s ease-in-out infinite;
+  }
+  @keyframes blobFloat {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(18px,-22px) scale(1.05); }
+    66% { transform: translate(-14px,16px) scale(.96); }
+  }
+  @keyframes fadeScaleIn { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
+  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 56px;
+    transition: all .4s ease;
+  }
+  nav.scrolled {
+    padding: 12px 30px;
+    top: 14px; left: 24px; right: 24px;
+    background: rgba(255,253,248,0.85);
+    backdrop-filter: blur(16px) saturate(160%);
+    box-shadow: 0 10px 30px -8px rgba(12,74,71,0.18), 0 0 0 1px rgba(12,74,71,0.06);
+    border-radius: 22px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-brand img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover; transition: height .3s, width .3s; box-shadow: 0 2px 10px rgba(12,74,71,0.15); }
+  nav.scrolled .nav-brand img { height: 38px; width: 38px; }
+  .nav-brand-text { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--teal-deep); letter-spacing: .2px; }
+  .nav-links {
+    display: flex; gap: 4px; list-style: none;
+    background: rgba(12,74,71,0.05); border-radius: 30px; padding: 5px;
+  }
+  .nav-links a {
+    font-size: 13.5px; text-decoration: none; color: var(--ink); font-weight: 500;
+    position: relative; padding: 9px 18px; border-radius: 24px; display: inline-block;
+    transition: color .3s ease;
+  }
+  .nav-links a::before {
+    content: ''; position: absolute; inset: 0; border-radius: 24px; background: var(--white);
+    box-shadow: 0 4px 14px -4px rgba(12,74,71,0.25); opacity: 0; transform: scale(.9);
+    transition: opacity .25s ease, transform .25s ease; z-index: -1;
+  }
+  .nav-links a:hover { color: var(--teal-deep); }
+  .nav-links a:hover::before { opacity: 1; transform: scale(1); }
+  .nav-cta {
+    background: var(--teal-deep); color: var(--white); border: none;
+    padding: 11px 26px; border-radius: 30px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: all .3s; letter-spacing: .2px;
+    display: inline-flex; align-items: center; gap: 6px;
+    box-shadow: 0 6px 18px -6px rgba(12,74,71,0.45);
+  }
+  .nav-cta:hover { background: var(--coral); transform: translateY(-2px); box-shadow: 0 10px 22px -6px rgba(232,137,92,0.5); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--teal-deep); border-radius: 2px; transition: all .3s; }
+  .mobile-nav { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 78%; max-width: 320px; background: var(--cream); z-index: 300; padding: 36px 32px 40px; box-shadow: -10px 0 40px rgba(0,0,0,0.12); transition: transform .4s cubic-bezier(.2,.8,.2,1); transform: translateX(100%); flex-direction: column; gap: 4px; }
+  .mobile-nav.open { transform: translateX(0); }
+  .mobile-nav-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+  .mobile-nav-head img { height: 42px; width: 42px; border-radius: 50%; }
+  .mobile-nav-close { background: rgba(12,74,71,0.06); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 16px; color: var(--teal-deep); cursor: pointer; }
+  .mobile-nav a.mnav-link { font-family: var(--serif); font-size: 21px; text-decoration: none; color: var(--teal-deep); padding: 14px 4px; border-bottom: 1px solid rgba(12,74,71,0.08); display: flex; align-items: center; gap: 14px; }
+  .mobile-nav a.mnav-link span.mnav-num { font-family: var(--sans); font-size: 11px; color: var(--coral); font-weight: 600; }
+  .mobile-nav-foot { margin-top: auto; padding-top: 20px; }
+  .mobile-nav-foot a { font-size: 13px; color: var(--ink-soft); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(12,74,71,0.3); z-index: 250; }
+  .nav-overlay.open { display: block; }
 
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh; position: relative; display: flex; align-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 75% 18%, rgba(95,195,184,0.16), transparent 55%),
+      radial-gradient(ellipse at 12% 82%, rgba(232,137,92,0.10), transparent 50%),
+      linear-gradient(180deg, #fffdf8 0%, #f6efe2 100%);
+  }
+  .hero-shape {
+    position: absolute; border-radius: 50%; opacity: .5; filter: blur(2px);
+    animation: blobFloat 16s ease-in-out infinite;
+  }
+  .hero-dot-grid {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(12,74,71,0.05) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black, transparent);
+  }
+  .hero-ring {
+    position: absolute; border-radius: 50%; border: 1.5px dashed rgba(95,195,184,0.35);
+    animation: ringSpin 40s linear infinite;
+  }
+  @keyframes ringSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .hero-wave {
+    position: absolute; bottom: -2px; left: 0; right: 0; line-height: 0;
+  }
+  .hero-inner {
+    position: relative; z-index: 3; max-width: 1280px; margin: 0 auto;
+    padding: 140px 56px 80px;
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); font-weight: 600; margin-bottom: 22px;
+    opacity: 0; transform: translateY(14px); animation: riseIn .7s ease forwards .15s;
+  }
+  .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); display: inline-block; }
+  .hero-title {
+    font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5.4vw, 68px);
+    line-height: 1.04; color: var(--teal-deep); margin-bottom: 22px;
+    opacity: 0; transform: translateY(18px); animation: riseIn .8s ease forwards .3s;
+  }
+  .hero-title em { font-style: italic; color: var(--coral); font-weight: 400; }
+  .hero-sub {
+    font-size: 16.5px; line-height: 1.75; color: var(--ink-soft); max-width: 460px; margin-bottom: 36px;
+    opacity: 0; transform: translateY(16px); animation: riseIn .8s ease forwards .45s;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; transform: translateY(16px); animation: riseIn .8s ease forwards .6s; }
+  .btn-primary {
+    background: var(--teal-deep); color: var(--white); padding: 15px 32px; border-radius: 30px;
+    font-size: 14px; font-weight: 600; text-decoration: none; transition: all .3s;
+    display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow);
+  }
+  .btn-primary:hover { background: var(--coral); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--teal-deep); padding: 15px 30px; border-radius: 30px;
+    border: 1.5px solid rgba(12,74,71,0.25); font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: all .3s; cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--teal-deep); background: rgba(12,74,71,0.05); }
+  .hero-trust { display: flex; gap: 28px; margin-top: 44px; opacity: 0; transform: translateY(16px); animation: riseIn .8s ease forwards .75s; flex-wrap: wrap; }
+  .trust-item { display: flex; flex-direction: column; }
+  .trust-num { font-family: var(--serif); font-size: 26px; color: var(--teal-deep); font-weight: 500; }
+  .trust-label { font-size: 11.5px; color: var(--ink-soft); letter-spacing: .3px; }
 
+  .hero-visual { position: relative; opacity: 0; animation: fadeIn 1s ease forwards .4s; }
+  .hero-img-main {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 28px;
+    box-shadow: var(--shadow);
+  }
+  .hero-float-card {
+    position: absolute; bottom: -26px; left: -30px; background: var(--white);
+    border-radius: 18px; padding: 16px 20px; box-shadow: 0 16px 40px rgba(12,74,71,0.18);
+    display: flex; align-items: center; gap: 12px; max-width: 230px;
+    animation: floatY 4s ease-in-out infinite;
+  }
+  .hero-float-icon { font-size: 22px; }
+  .hero-float-card .ft-title { font-size: 13px; font-weight: 600; color: var(--teal-deep); }
+  .hero-float-card .ft-sub { font-size: 11.5px; color: var(--ink-soft); }
+  .hero-badge-top {
+    position: absolute; top: 24px; right: 24px; background: rgba(255,253,248,0.92);
+    backdrop-filter: blur(6px); border-radius: 30px; padding: 8px 16px;
+    font-size: 12px; font-weight: 600; color: var(--teal-deep); display: flex; align-items: center; gap: 8px;
+  }
+  .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #4caf82; position: relative; flex-shrink: 0; }
+  .pulse-dot::after {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid #4caf82;
+    animation: pulseRing 1.8s ease-out infinite;
+  }
+  @keyframes pulseRing { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.8); opacity: 0; } }
+  .hero-float-card-2 {
+    position: absolute; top: -28px; right: -22px; width: 92px; height: 92px;
+    border-radius: 16px; overflow: hidden; border: 4px solid var(--cream);
+    box-shadow: 0 14px 30px rgba(12,74,71,0.22); transform: rotate(6deg);
+    animation: floatY 4.5s ease-in-out infinite reverse;
+  }
+  .hero-float-card-2 img { width: 100%; height: 100%; object-fit: cover; }
+  @keyframes riseIn { to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+  /* ===== MARQUEE ===== */
+  .marquee-wrap { background: var(--teal-deep); padding: 16px 0; overflow: hidden; }
+  .marquee-track { display: flex; width: max-content; animation: scroll 32s linear infinite; }
+  .marquee-item { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--sand); padding: 0 36px; white-space: nowrap; }
+  .marquee-sep { color: var(--teal-light); padding: 0 6px; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ===== SECTION SHARED ===== */
+  .section { padding: 100px 56px; max-width: 1280px; margin: 0 auto; }
+  .section-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--coral); font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .section-eyebrow::before { content:''; width: 28px; height: 2px; background: var(--coral); }
+  .section-heading { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 3.6vw, 46px); color: var(--teal-deep); line-height: 1.12; margin-bottom: 18px; }
+  .section-heading em { font-style: italic; color: var(--coral); font-weight: 400; }
+  .section-desc { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; max-width: 560px; }
+
+  /* ===== ABOUT ===== */
+  .about-section { background: var(--sand); border-radius: 36px; margin: 0 24px; max-width: none; padding: 90px 56px; position: relative; overflow: hidden; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1180px; margin: 0 auto; position: relative; z-index: 1; }
+  .about-collage { position: relative; height: 460px; }
+  .collage-img { position: absolute; border-radius: 20px; object-fit: cover; box-shadow: 0 18px 40px rgba(12,74,71,0.18); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+  .collage-img.c1 { width: 58%; height: 64%; top: 0; left: 0; z-index: 2; }
+  .collage-img.c2 { width: 46%; height: 48%; bottom: 0; right: 0; z-index: 3; border: 6px solid var(--cream); }
+  .collage-img.c3 { width: 36%; height: 30%; top: 14%; right: 4%; z-index: 1; border: 5px solid var(--cream); transform: rotate(4deg); animation: floatY 5s ease-in-out infinite; }
+  .about-collage:hover .c1 { transform: translateY(-6px) rotate(-1deg); }
+  .about-collage:hover .c2 { transform: translateY(6px) rotate(1deg); }
+  .about-text-block p { font-size: 15px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 18px; }
+  .about-quote { font-family: var(--serif); font-style: italic; font-size: 21px; color: var(--teal-deep); border-left: 3px solid var(--coral); padding-left: 20px; margin: 28px 0; line-height: 1.5; }
+
+  /* ===== FEATURES ===== */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+  .feat-card {
+    background: var(--white); border-radius: 22px; padding: 34px 28px;
+    border: 1px solid rgba(12,74,71,0.08); transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease, border-color .4s ease;
+    position: relative; overflow: hidden; will-change: transform;
+  }
+  .feat-card::before {
+    content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,0.5), transparent);
+    transition: left .7s ease; z-index: 2; pointer-events: none;
+  }
+  .feat-card:hover::before { left: 130%; }
+  .feat-card:hover { transform: translateY(-8px) scale(1.015); box-shadow: var(--shadow); border-color: transparent; }
+  .feat-icon-circle {
+    width: 52px; height: 52px; border-radius: 50%; background: var(--sand);
+    display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px;
+    transition: all .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .feat-card:hover .feat-icon-circle { background: var(--coral); transform: scale(1.15) rotate(-10deg); box-shadow: 0 8px 20px rgba(232,137,92,0.35); }
+  .feat-name { font-size: 16px; font-weight: 600; color: var(--teal-deep); margin-bottom: 8px; }
+  .feat-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ===== GALLERY ===== */
+  .gallery-section { padding-top: 100px; padding-bottom: 40px; }
+  .gallery-tabs { display: flex; gap: 10px; margin: 36px 0 36px; flex-wrap: wrap; }
+  .gal-tab {
+    padding: 10px 22px; border-radius: 24px; border: 1.5px solid rgba(12,74,71,0.15);
+    background: transparent; font-size: 13px; font-weight: 600; color: var(--ink-soft);
+    cursor: pointer; transition: all .3s;
+  }
+  .gal-tab.active { background: var(--teal-deep); color: var(--white); border-color: var(--teal-deep); }
+  .gal-tab:hover:not(.active) { border-color: var(--teal-deep); color: var(--teal-deep); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .gallery-grid .gitem:nth-child(7n+1) { grid-row: span 2; }
+  .gitem { border-radius: 16px; overflow: hidden; cursor: pointer; position: relative; box-shadow: 0 0 0 rgba(12,74,71,0); transition: box-shadow .4s ease, transform .4s ease; }
+  .gitem img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .4s ease; aspect-ratio: 1/1; }
+  .gallery-grid .gitem:nth-child(7n+1) img { aspect-ratio: 1/2.08; }
+  .gitem:hover { transform: translateY(-4px); box-shadow: 0 18px 34px -12px rgba(12,74,71,0.35); z-index: 2; }
+  .gitem:hover img { transform: scale(1.1) rotate(.5deg); }
+  .gitem-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,74,71,0.55), transparent 60%); opacity: 0; transition: opacity .35s; display: flex; align-items: flex-end; padding: 14px; }
+  .gitem:hover .gitem-overlay { opacity: 1; }
+  .gitem-zoom { color: var(--white); font-size: 13px; font-weight: 600; transform: translateY(8px); opacity: 0; transition: all .35s ease .05s; }
+  .gitem:hover .gitem-zoom { transform: translateY(0); opacity: 1; }
+
+  /* lightbox */
+  .lightbox { position: fixed; inset: 0; background: rgba(12,20,19,0.94); z-index: 9000; display: none; align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 88vw; max-height: 84vh; object-fit: contain; border-radius: 10px; }
+  .lb-close { position: absolute; top: 26px; right: 32px; background: rgba(255,255,255,0.12); border: none; color: var(--white); font-size: 22px; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.12); border: none; color: var(--white); font-size: 24px; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; }
+  .lb-prev { left: 26px; } .lb-next { right: 26px; }
+
+  /* ===== STATS ===== */
+  .stats-band { background: var(--teal-deep); border-radius: 32px; margin: 0 24px 100px; padding: 64px 56px; display: grid; grid-template-columns: repeat(4,1fr); position: relative; overflow: hidden; }
+  .stats-band::before { content:''; position: absolute; width: 340px; height: 340px; border-radius: 50%; background: rgba(255,255,255,0.04); top: -120px; right: -80px; animation: blobFloat 18s ease-in-out infinite; }
+  .stats-band::after { content:''; position: absolute; width: 220px; height: 220px; border-radius: 50%; background: rgba(232,137,92,0.08); bottom: -100px; left: -60px; animation: blobFloat 14s ease-in-out infinite reverse; }
+  .stat-block { text-align: center; position: relative; z-index: 1; }
+  .stat-num { font-family: var(--serif); font-size: 48px; color: var(--white); font-weight: 500; }
+  .stat-label { font-size: 12px; color: rgba(255,253,248,0.65); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; }
+
+  /* ===== LOCATION ===== */
+  .location-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 60px; align-items: start; }
+  .poi-list { margin-top: 32px; list-style: none; }
+  .poi-row { display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid rgba(12,74,71,0.1); opacity: 0; transform: translateX(-16px); transition: all .5s ease; }
+  .poi-row.visible { opacity: 1; transform: translateX(0); }
+  .poi-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--sand); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .poi-text { font-size: 14.5px; font-weight: 500; }
+  .poi-dist { margin-left: auto; font-size: 12.5px; color: var(--coral); font-weight: 600; white-space: nowrap; }
+  .map-frame { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); height: 460px; border: 1px solid rgba(12,74,71,0.1); }
+  .map-frame iframe { width: 100%; height: 100%; border: none; }
+
+  /* ===== TESTIMONIALS ===== */
+  .testi-section { background: var(--sand); border-radius: 36px; margin: 0 24px; max-width: none; padding: 90px 56px; }
+  .testi-head { text-align: center; max-width: 600px; margin: 0 auto 50px; }
+  .testi-head .section-eyebrow { justify-content: center; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1180px; margin: 0 auto; }
+  .testi-card { background: var(--white); border-radius: 22px; padding: 32px 28px; box-shadow: 0 14px 34px rgba(12,74,71,0.08); transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease; }
+  .testi-card:hover { transform: translateY(-8px); box-shadow: 0 24px 50px -10px rgba(12,74,71,0.22); }
+  .testi-stars { color: var(--coral); font-size: 14px; letter-spacing: 3px; margin-bottom: 16px; }
+  .testi-text { font-size: 14.5px; color: var(--ink); line-height: 1.75; margin-bottom: 22px; font-style: italic; font-family: var(--serif); }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--teal-deep); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; }
+  .testi-name { font-size: 13px; font-weight: 600; }
+  .testi-source { font-size: 11.5px; color: var(--ink-soft); }
+
+  /* ===== CTA ===== */
+  .cta-section { text-align: center; padding: 110px 56px; position: relative; }
+  .cta-blob { position: absolute; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(95,195,184,0.18), transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 0; animation: ctaPulse 6s ease-in-out infinite; }
+  .cta-blob-2 { position: absolute; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(232,137,92,0.12), transparent 70%); top: 30%; left: 65%; z-index: 0; animation: blobFloat 12s ease-in-out infinite; }
+  @keyframes ctaPulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: .8; } 50% { transform: translate(-50%,-50%) scale(1.12); opacity: 1; } }
+  .cta-content { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+  .cta-heading { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 4vw, 50px); color: var(--teal-deep); margin-bottom: 18px; line-height: 1.15; }
+  .cta-heading em { font-style: italic; color: var(--coral); }
+  .cta-sub { font-size: 15.5px; color: var(--ink-soft); margin-bottom: 38px; }
+  .cta-contacts { display: flex; justify-content: center; gap: 32px; margin-top: 44px; flex-wrap: wrap; }
+  .cta-contact-item { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink-soft); font-weight: 500; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--teal-deep); color: var(--sand); padding: 70px 56px 28px;
+    border-radius: 36px 36px 0 0; margin: 0 12px 0; position: relative; overflow: hidden;
+  }
+  footer::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image: radial-gradient(rgba(255,253,248,0.035) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  footer::after {
+    content: ''; position: absolute; width: 360px; height: 360px; border-radius: 50%;
+    background: rgba(95,195,184,0.08); top: -160px; right: -100px; pointer-events: none;
+    animation: blobFloat 16s ease-in-out infinite;
+  }
+  .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,253,248,0.12); position: relative; z-index: 1; }
+  .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .footer-brand img { height: 46px; width: 46px; border-radius: 50%; box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
+  .footer-brand-text { font-family: var(--serif); font-size: 20px; }
+  .footer-desc { font-size: 13.5px; color: rgba(255,253,248,0.65); line-height: 1.8; max-width: 320px; }
+  .footer-social { display: flex; gap: 10px; margin-top: 22px; }
+  .footer-social a {
+    width: 40px; height: 40px; border-radius: 50%; background: rgba(255,253,248,0.06);
+    border: 1px solid rgba(255,253,248,0.18); display: flex; align-items: center; justify-content: center;
+    text-decoration: none; transition: all .3s cubic-bezier(.2,.8,.2,1); color: var(--sand);
+  }
+  .footer-social a:hover { background: var(--coral); border-color: var(--coral); transform: translateY(-3px); box-shadow: 0 8px 18px -4px rgba(232,137,92,0.5); color: var(--white); }
+  .footer-col-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-light); margin-bottom: 18px; font-weight: 600; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { font-size: 13.5px; color: rgba(255,253,248,0.75); text-decoration: none; transition: all .25s ease; display: inline-flex; align-items: center; gap: 8px; }
+  .footer-links a:hover { color: var(--white); padding-left: 4px; }
+  .footer-bottom { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; padding-top: 26px; font-size: 12px; color: rgba(255,253,248,0.45); flex-wrap: wrap; gap: 10px; position: relative; z-index: 1; }
+
+  /* ===== REVEAL ===== */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== SCROLL TOP ===== */
+  .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 48px; height: 48px; border-radius: 50%; background: var(--teal-deep); color: var(--white); border: none; font-size: 18px; cursor: pointer; box-shadow: var(--shadow); z-index: 150; opacity: 0; transform: translateY(10px); transition: all .3s; display: flex; align-items: center; justify-content: center; }
+  .scroll-top.visible { opacity: 1; transform: translateY(0); }
+  .scroll-top:hover { background: var(--coral); }
+
+  @media (max-width: 980px) {
+    nav { padding: 16px 24px; }
+    nav.scrolled { padding: 11px 18px; left: 12px; right: 12px; top: 10px; border-radius: 18px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; padding: 110px 24px 60px; gap: 40px; }
+    .hero-visual { order: -1; }
+    .hero-trust { gap: 20px; }
+    .hero-float-card-2 { width: 70px; height: 70px; top: -18px; right: -14px; }
+    .section { padding: 70px 24px; }
+    .about-section, .testi-section { margin: 0 12px; padding: 56px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-collage { height: 360px; }
+    .collage-img.c3 { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid .gitem:nth-child(7n+1) { grid-row: span 1; }
+    .gallery-grid .gitem:nth-child(7n+1) img { aspect-ratio: 1/1; }
+    .stats-band { grid-template-columns: repeat(2,1fr); margin: 0 12px 70px; row-gap: 32px; padding: 44px 28px; }
+    .location-grid { grid-template-columns: 1fr; gap: 36px; }
+    .map-frame { height: 320px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    footer { margin: 0; border-radius: 28px 28px 0 0; padding: 56px 24px 24px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+    .footer-bottom { flex-direction: column; }
+    .cta-contacts { gap: 18px; flex-direction: column; align-items: center; }
+  }
+</style>
 </head>
 <body>
-  
 
-<header>
-  <div class="brand">
-    <img src="logo.jpg" alt="Apartmani Zeneva logo" class="logo">
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#pocetna" class="nav-brand">
+    <img src="logo.jpg" alt="Apartmani Zeneva">
+    <span class="nav-brand-text">Apartmani <em style="color:var(--coral);font-style:italic;">Zeneva</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#smjestaj">Smještaj</a></li>
+    <li><a href="#galerija">Galerija</a></li>
+    <li><a href="#lokacija">Lokacija</a></li>
+    <li><a href="#utisci">Utisci</a></li>
+  </ul>
+  <a class="nav-cta" href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090" target="_blank">Rezerviši</a>
+  <button class="hamburger" id="hamburger" aria-label="Meni"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-head">
+    <img src="logo.jpg" alt="Apartmani Zeneva">
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Zatvori">✕</button>
   </div>
-  <nav class="desktop-nav">
-    <a href="#pocetna">Početna</a>
-    <a href="galerija.html">Galerija</a>
-    <a href="#smjestaj">Smještaj</a>
-    
-  </nav>
-  <button class="hamburger" id="hamburger" aria-label="Otvori navigaciju" aria-expanded="false">
-    <span class="bar"></span>
-  </button>
-</header>
-
-<div id="mobileNav" class="mobile-nav">
-  <a href="#pocetna">Početna</a>
-  <a href="galerija.html">Galerija</a>
-  <a href="#smjestaj">Smještaj</a>
+  <a class="mnav-link" href="#smjestaj"><span class="mnav-num">01</span>Smještaj</a>
+  <a class="mnav-link" href="#galerija"><span class="mnav-num">02</span>Galerija</a>
+  <a class="mnav-link" href="#lokacija"><span class="mnav-num">03</span>Lokacija</a>
+  <a class="mnav-link" href="#utisci"><span class="mnav-num">04</span>Utisci</a>
+  <a class="btn-primary" style="text-align:center;margin-top:24px;justify-content:center;" href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090" target="_blank">Rezerviši →</a>
+  <div class="mobile-nav-foot">
+    <a href="tel:+38269761184">📞 +382 69 761 184</a>
+    <a href="https://www.instagram.com/apartmani_zeneva" target="_blank">📷 @apartmani_zeneva</a>
+  </div>
 </div>
 
-<section class="hero-intro" id="pocetna">
-  <div class="hero-content">
-    <h1>Dobrodošli u Apartmane Zeneva</h1>
-<p>
-  Dobrodošli u vaše oazu mira i užitka! Naši moderno uređeni apartmani, okruženi mediteranskim zelenilom i samo korak od mora. Ovdje se stvaraju uspomene koje traju cijeli život.
-</p>    
-<a href="galerija.html" class="hero-btn hero-btn--secondary">Pogledajte galeriju...</a><br><br>
-<a href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090" class="hero-btn hero-btn--primary">Rezerviši odmah</a>
-
+<!-- HERO -->
+<section class="hero" id="pocetna">
+  <div class="hero-dot-grid"></div>
+  <div class="hero-ring" style="width:560px;height:560px;top:-180px;right:-200px;"></div>
+  <div class="hero-ring" style="width:340px;height:340px;bottom:-120px;left:-100px;border-color:rgba(232,137,92,0.25);animation-direction:reverse;animation-duration:55s;"></div>
+  <div class="hero-shape" style="width:420px;height:420px;background:var(--teal-light);top:-160px;right:-140px;"></div>
+  <div class="hero-shape" style="width:260px;height:260px;background:var(--coral);opacity:.12;bottom:-100px;left:-80px;animation-delay:-4s;"></div>
+  <div class="hero-shape" style="width:120px;height:120px;background:var(--teal-light);opacity:.18;top:18%;left:6%;animation-delay:-8s;"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow"><span class="dot"></span>Ulcinj · Velika Plaža · Crna Gora</p>
+      <h1 class="hero-title">Vaša oaza<br>mira i <em>mora</em></h1>
+      <p class="hero-sub">Moderno opremljeni apartmani okruženi mediteranskim zelenilom, samo 800 metara od zlatnog pijeska Velike plaže. Tu se stvaraju uspomene koje traju.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090" target="_blank">Rezerviši odmah →</a>
+        <button class="btn-secondary" onclick="document.getElementById('galerija').scrollIntoView({behavior:'smooth'})">Pogledaj galeriju</button>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-num">800m</span><span class="trust-label">do plaže</span></div>
+        <div class="trust-item"><span class="trust-num">9.2★</span><span class="trust-label">Booking ocjena</span></div>
+        <div class="trust-item"><span class="trust-num">100m</span><span class="trust-label">do restorana</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <span class="hero-badge-top"><span class="pulse-dot"></span>Ljeto 2026 — slobodni termini</span>
+      <img class="hero-img-main" src="terasa.jpg" alt="Pogled sa terase apartmana Zeneva">
+      <div class="hero-float-card">
+        <span class="hero-float-icon">🌊</span>
+        <div>
+          <div class="ft-title">Velika Plaža</div>
+          <div class="ft-sub">10 min pješice</div>
+        </div>
+      </div>
+      <div class="hero-float-card-2">
+        <img src="sobalabudovi1.jpg" alt="Soba">
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="pogodnosti-section" id="pogodnosti">
-  <div class="container">
-    <h2 class="scroll-anim fade-up">Šta naši apartmani nude</h2>
-    <p class="description scroll-anim fade-up">
-      Naši apartmani su pažljivo opremljeni kako bi vam pružili savršen spoj udobnosti.
-      Sve što vam treba za bezbrižan odmor — na jednom mjestu.
-    </p>
-
-    <div class="features-grid">
-      <article class="feature scroll-anim fade-up">
-        <img src="icon/wifi (2).png" alt="Wi-Fi" class="scroll-anim fade-down">
-        <h3>Besplatan Wi-Fi</h3>
-        <p>Brza i stabilna internet konekcija dostupna u svim apartmanima.</p>
-      </article>
-
-      <article class="feature scroll-anim fade-up">
-        <img src="icon/parked-car.png" alt="Parking" class="scroll-anim fade-down">
-        <h3>Privatni parking</h3>
-        <p>Osiguran besplatan parking prostor za sve naše goste.</p>
-      </article>
-
-      <article class="feature scroll-anim fade-up">
-        <img src="icon/air-conditioning.png" alt="Klima uređaj" class="scroll-anim fade-down">
-        <h3>Klima uređaj</h3>
-        <p>Moderan klima sistem za savršen komfor tokom toplih dana.</p>
-      </article>
-
-      <article class="feature scroll-anim fade-up">
-        <img src="icon/kitchen-table.png" alt="Kuhinja" class="scroll-anim fade-down">
-        <h3>Potpuno opremljena kuhinja</h3>
-        <p>Sve što vam treba — frižider, šporet, posuđe i pribor za jelo.</p>
-      </article>
-
-      <article class="feature scroll-anim fade-up">
-        <img src="icon/tv.png" alt="TV" class="scroll-anim fade-down">
-        <h3>Smart TV</h3>
-        <p>Uživajte u omiljenim filmovima i serijama uz veliki ekran.</p>
-      </article>
-
-      <article class="feature scroll-anim fade-up">
-        <img src="icon/balcony.png" alt="Balkon" class="scroll-anim fade-down">
-        <h3>Balkon s pogledom</h3>
-        <p>Opustite se uz kafu i predivan pogled na more i okolinu.</p>
-      </article>
-     
-    </div>
-    <br><br>
-  <div style="display:flex; justify-content:center; width:100%;">
-    <a href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090"
-       class="hero-btn hero-btn--primary">
-      Rezerviši odmah
-    </a>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Oaza mira i užitka</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">800m do Velike plaže</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Besplatan Wi-Fi & parking</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Mediteransko zelenilo</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Ulcinj — biser Jadrana</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Oaza mira i užitka</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">800m do Velike plaže</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Besplatan Wi-Fi & parking</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Mediteransko zelenilo</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Ulcinj — biser Jadrana</span><span class="marquee-sep">✦</span>
   </div>
-</section>
-
-
-
-  
-<section class="reviews" id="reviews">
-  <div class="reviews__header">
-    <h2>Recenzije korisnika</h2>
-    <p>Recenzije preuzete sa Bookinga</p>
-  </div>
-
-  <div class="reviews__panel" id="reviewsPanel" aria-live="polite">
-    
-  </div>
-
-  <div class="reviews__controls">
-    <button class="btn btn--ghost" id="prevBtn" aria-label="Prethodne recenzije">← Prev</button>
-    <button class="btn btn--ghost" id="nextBtn" aria-label="Sljedeće recenzije">Next →</button>
-  </div>
-
-  <div class="dots" id="dots" aria-label="Navigacija kroz stranice recenzija">
-    
-    
-  </div>
-  <br><br>
-  <div style="display:flex; justify-content:center; width:100%;">
-    <a href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090"
-       class="hero-btn hero-btn--primary">
-      Rezerviši odmah
-    </a>
-  </div>
-  
-</section>
-
-
-
-
-
-
-
-<section id="okolina-ulcinj" class="okolina-section scroll-anim">
-  <header class="okolina-header scroll-anim" style="text-align: center; max-width: 900px; margin: 0 auto;">
-    <p>
-      Smješteni u srcu Ulcinja, naši apartmani nude savršen spoj mira i blizine mora.
-      Samo <strong>800 metara</strong> dijeli vas od najbliže plaže, dok su Stoj i centar grada udaljeni tek nekoliko minuta vožnje.
-    </p>
-  </header>
-  
-
-  <figure class="okolina-hero scroll-anim">
-    <img src="velika-plaza-ada-bojana-crna-gora.jpg" alt="Pogled na Ulcinj">
-    <figcaption>Mediteranski miris mora i zelenila — savršeno mjesto za opuštanje.</figcaption>
-  </figure>
-
-  <div class="okolina-info">
-    <article class="scroll-anim">
-      <h3>📍 Lokacija</h3>
-      <p>Naši apartmani nalaze se na Velikoj plaži u Ulcinju, u srcu zlatnog pijeska i mirisa mora. Ovdje vas očekuje savršen spoj sunca, mora i opuštanja</p>
-    </article>
-
-    <article class="scroll-anim">
-      <h3>🏖 Najbliža plaža</h3>
-      <p>Najbliža plaža udaljena je svega <strong>800 metara</strong> — deset minuta lagane šetnje do plaze.</p>
-    </article>
-
-    <article class="scroll-anim">
-      <h3>🚗 Udaljenosti</h3>
-      Najblizi restoran, prodavnice – <strong>100 metara</strong><br> Centar Ulcinja – <strong>8.9 km</strong><br>
-    </article>
-  </div>
-  <br><br>
-  <div style="display:flex; justify-content:center; width:100%;">
-    <a href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090"
-       class="hero-btn hero-btn--primary">
-      Rezerviši odmah
-    </a>
-</section>
-
-
-
-<div class="container" id="galerija">
-
-
-
- 
-  <section class="slider-section">
-    <h2>Unutrašnji prostor</h2>
-    <p class="description">Enterijer apartmana pažljivo je uređen da pruži maksimalan komfor i toplinu doma. Kombinacija modernih detalja i prirodnih materijala stvara ugodnu atmosferu, dok su svi prostori klimatizovani i potpuno opremljeni za duže boravke.</p>
-    <div class="slider-wrapper" id="slider2">
-      <div class="slides">
-        <img src="slika1.jpg" alt="">
-        <img src="slika4.jpg" alt="">
-        <img src="slika5.jpg" alt="">
-        <img src="slika6.jpg" alt="">
-        <img src="slika7.jpg" alt="">
-        <img src="slika8.jpg" alt="">
-      </div>
-      <button class="nav-btn prev" onclick="moveSlide('slider2', -1)">❮</button>
-      <button class="nav-btn next" onclick="moveSlide('slider2', 1)">❯</button>
-    </div>
-  </section>
-
-
-  <section class="slider-section">
-    <h2>Udobnost i dizajn</h2>
-    <p class="description">Naši apartmani pažljivo su uređeni kako bi spojili udobnost i moderan dizajn. Svaka prostorija odiše toplinom i funkcionalnošću, uz pažljivo odabrane detalje koji stvaraju osjećaj doma.</p>
-    <div class="slider-wrapper" id="slider3">
-      <div class="slides">
-        <img src="slika9.jpg" alt="">
-        <img src="slika10.jpg" alt="">
-        <img src="slika11.jpg" alt="">
-        <img src="slika12.jpg" alt="">
-        <img src="slika14.jpg" alt="">
-        <img src="slika15.jpg" alt="">
-      </div>
-      <button class="nav-btn prev" onclick="moveSlide('slider3', -1)">❮</button>
-      <button class="nav-btn next" onclick="moveSlide('slider3', 1)">❯</button>
-    </div>
-  </section>
-
-
-  <section class="slider-section">
-    <h2>Detalji i dekoracije</h2>
-    <p class="description">Posebnu pažnju posvetili smo sitnicama – dekoracije, svježe cvijeće i pažljivo odabrani tonovi doprinose opuštenom ugođaju. Naši gosti često ističu upravo toplinu i pažnju prema detaljima kao jedan od razloga za povratak.</p>
-    <div class="slider-wrapper" id="slider4">
-      <div class="slides">
-        <img src="slika16.jpg" alt="">
-        <img src="slika17.jpg" alt="">
-        <img src="slika19.jpg" alt="">
-        <img src="slika20.jpg" alt="">
-        <img src="slika23.jpg" alt="">
-      </div>
-      <button class="nav-btn prev" onclick="moveSlide('slider4', -1)">❮</button>
-      <button class="nav-btn next" onclick="moveSlide('slider4', 1)">❯</button>
-    </div>
-  </section>
-
-
-  <section class="slider-section">
-    <h2>Pogled i okruženje</h2>
-    <p class="description">S terasa apartmana pruža se očaravajući pogled na more, zalaske sunca i okolne pejzaže. Bilo da uživate u jutarnjoj kafi ili večernjem odmoru, panoramski prizori pružaju mir i inspiraciju tokom cijelog boravka.</p>
-    <div class="slider-wrapper" id="slider5">
-      <div class="slides">
-        <img src="hero.png" alt="">
-        <img src="terasa.jpg" alt="">
-        <img src="terasa2.jpg" alt="">
-        <img src="slika13.jpg" alt="">
-        <img src="zgrada.jpg" alt="">
-      </div>
-      <button class="nav-btn prev" onclick="moveSlide('slider5', -1)">❮</button>
-      <button class="nav-btn next" onclick="moveSlide('slider5', 1)">❯</button>
-    </div>
-  </section>
-
 </div>
 
+<!-- ABOUT -->
+<section class="section about-section" id="smjestaj">
+  <div class="about-grid">
+    <div class="about-collage reveal">
+      <img class="collage-img c1" src="zgrada.jpg" alt="Zgrada apartmana Zeneva">
+      <img class="collage-img c2" src="slika1.jpg" alt="Soba u apartmanu">
+      <img class="collage-img c3" src="sobalabudovi1.jpg" alt="Detalj sobe">
+    </div>
+    <div class="about-text-block reveal">
+      <p class="section-eyebrow">O nama</p>
+      <h2 class="section-heading">Dobrodošli u <em>Apartmane Zeneva</em></h2>
+      <p>Uživajte u savršenom spoju udobnosti, stila i mediteranskog šarma. Naši moderno opremljeni apartmani smješteni su na idealnoj lokaciji u mirnom dijelu Ulcinja, okruženi zelenilom i mediteranskim biljem.</p>
+      <div class="about-quote">„Ovdje se stvaraju uspomene koje traju cijeli život."</div>
+      <p>Samo nekoliko minuta hoda dijeli vas od Velike plaže i šetališta, dok blizina prodavnica i restorana čini boravak još praktičnijim. Svi prostori su klimatizovani i potpuno opremljeni za duže boravke.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <p class="section-eyebrow">Sadržaji</p>
+  <h2 class="section-heading">Sve što vam treba,<br><em>na jednom mjestu</em></h2>
+  <div class="features-grid">
+    <div class="feat-card reveal"><div class="feat-icon-circle">📶</div><div class="feat-name">Besplatan Wi-Fi</div><div class="feat-desc">Brza i stabilna internet konekcija dostupna u svim apartmanima.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon-circle">🚗</div><div class="feat-name">Privatni parking</div><div class="feat-desc">Osiguran besplatan parking prostor za sve naše goste.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon-circle">❄️</div><div class="feat-name">Klima uređaj</div><div class="feat-desc">Moderan klima sistem za savršen komfor tokom toplih dana.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon-circle">🍳</div><div class="feat-name">Opremljena kuhinja</div><div class="feat-desc">Frižider, šporet, posuđe i pribor za jelo — kuvajte kao kod kuće.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon-circle">📺</div><div class="feat-name">Smart TV</div><div class="feat-desc">Uživajte u omiljenim filmovima i serijama uz veliki ekran.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon-circle">🌅</div><div class="feat-name">Balkon s pogledom</div><div class="feat-desc">Opustite se uz jutarnju kafu i pogled na more i okolinu.</div></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery-section" id="galerija">
+  <p class="section-eyebrow">Galerija</p>
+  <h2 class="section-heading">Pogledajte <em>prostor</em> iz blizine</h2>
+  <p class="section-desc">Enterijer pažljivo uređen da pruži maksimalan komfor i toplinu doma — od dnevnih boravaka do terase s pogledom na more.</p>
+  <div class="gallery-tabs">
+    <button class="gal-tab active" data-filter="all">Sve</button>
+    <button class="gal-tab" data-filter="enterijer">Enterijer</button>
+    <button class="gal-tab" data-filter="terasa">Terasa & pogled</button>
+    <button class="gal-tab" data-filter="kupatilo">Kupatilo</button>
+    <button class="gal-tab" data-filter="kuhinja">Kuhinja</button>
+    <button class="gal-tab" data-filter="eksterijer">Eksterijer</button>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- populated by JS for ease, but include first batch directly for no-JS fallback -->
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext">›</button>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-block reveal"><div class="stat-num" data-target="800">0</div><div class="stat-label">metara do plaže</div></div>
+  <div class="stat-block reveal"><div class="stat-num" data-target="9.2" data-decimal="1">0</div><div class="stat-label">booking ocjena</div></div>
+  <div class="stat-block reveal"><div class="stat-num" data-target="100">0</div><div class="stat-label">m do restorana</div></div>
+  <div class="stat-block reveal"><div class="stat-num" data-target="6">0</div><div class="stat-label">sadržaja uključeno</div></div>
+</div>
+
+<!-- LOCATION -->
+<section class="section" id="lokacija">
+  <div class="location-grid">
+    <div>
+      <p class="section-eyebrow reveal">Lokacija</p>
+      <h2 class="section-heading reveal">Srce <em>Ulcinja</em>,<br>korak od mora</h2>
+      <p class="section-desc reveal">Smješteni u mirnom dijelu grada Donji Stoj, okruženi zelenilom — uz lakoću pristupa plaži, prodavnicama i restoranima.</p>
+      <ul class="poi-list">
+        <li class="poi-row"><div class="poi-icon">🏖️</div><div class="poi-text">Velika plaža</div><div class="poi-dist">800m · 10 min</div></li>
+        <li class="poi-row"><div class="poi-icon">🍽️</div><div class="poi-text">Restorani i prodavnice</div><div class="poi-dist">100m</div></li>
+        <li class="poi-row"><div class="poi-icon">🏰</div><div class="poi-text">Stari grad Ulcinj</div><div class="poi-dist">8.9 km</div></li>
+        <li class="poi-row"><div class="poi-icon">🏝️</div><div class="poi-text">Ada Bojana</div><div class="poi-dist">~15 min vožnje</div></li>
+        <li class="poi-row"><div class="poi-icon">✈️</div><div class="poi-text">Aerodrom Podgorica</div><div class="poi-dist">~1h vožnje</div></li>
+      </ul>
+    </div>
+    <div class="map-frame reveal">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.3!2d19.3012071!3d41.9034468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134e1751d28f37a7%3A0x8d92400ec26886f0!2sApartmani%20Zeneva!5e0!3m2!1sbs!2sba!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-section" id="utisci">
+  <div class="testi-head">
+    <p class="section-eyebrow">Utisci gostiju</p>
+    <h2 class="section-heading">Recenzije sa <em>Bookinga</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Savršen odmor! Apartman je bio čist, udoban i odlično opremljen. Lokacija je idealna — more je blizu, a okolina je mirna i zelena."</p>
+      <div class="testi-author"><div class="testi-avatar">MK</div><div><div class="testi-name">Marija K.</div><div class="testi-source">Booking.com</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Domaćini su bili izuzetno ljubazni i susretljivi. Apartman ima sve što vam treba, a balkon s pogledom je pravi bonus!"</p>
+      <div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Stefan M.</div><div class="testi-source">Booking.com</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Ulcinj je lijep grad, a apartmani Zeneva idealna baza. Blizina plaže je fantastična, a besplatan parking velika prednost."</p>
+      <div class="testi-author"><div class="testi-avatar">AP</div><div><div class="testi-name">Ana P.</div><div class="testi-source">Booking.com</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-blob"></div>
+  <div class="cta-blob-2"></div>
+  <div class="cta-content reveal">
+    <h2 class="cta-heading">Rezervišite vaš<br><em>savršen odmor</em> danas</h2>
+    <p class="cta-sub">Slobodni termini se popunjavaju brzo. Kontaktirajte nas direktno ili rezervišite preko Bookinga.</p>
+    <div class="hero-btns" style="justify-content:center;">
+      <a class="btn-primary" href="https://www.booking.com/hotel/me/apartments-zeneva.html?aid=1263239;label=PShare-Pulse-9oJGTK@1767550090" target="_blank">Rezerviši na Bookingu →</a>
+      <a class="btn-secondary" href="tel:+38269761184">Pozovi nas</a>
+    </div>
+    <div class="cta-contacts">
+      <div class="cta-contact-item">📞 +382 69 761 184</div>
+      <div class="cta-contact-item">💬 +382 69 209 203 (Viber/WhatsApp)</div>
+      <div class="cta-contact-item">✉️ apartmanizeneva1@gmail.com</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer id="kontakt">
-  <div class="footer-content">
-    <img src="logo.jpg" alt="Apartmani Zeneva logo" class="footer-logo" loading="lazy">
-
-    <div class="footer-links">
-      
-      <a href="https://www.instagram.com/apartmani_zeneva" target="_blank" aria-label="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.428.403a4.92 4.92 0 011.74 1.09 4.92 4.92 0 011.09 1.741c.163.459.347 1.258.403 2.428.058 1.267.07 1.647.07 4.851s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.403 2.428a4.92 4.92 0 01-1.09 1.74 4.92 4.92 0 01-1.741 1.09c-.459.163-1.258.347-2.428.403-1.267.058-1.647.07-4.851.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.428-.403a4.92 4.92 0 01-1.74-1.09 4.92 4.92 0 01-1.09-1.741c-.163-.459-.347-1.258-.403-2.428C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.056-1.17.24-1.97.403-2.428a4.92 4.92 0 011.09-1.74 4.92 4.92 0 011.741-1.09c.459-.163 1.258-.347 2.428-.403C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.13 4.758.33 3.905.684a6.919 6.919 0 00-2.519 1.637A6.919 6.919 0 00.684 4.905C.33 5.758.13 6.775.072 8.052.013 9.332 0 9.741 0 12c0 2.259.013 2.668.072 3.948.058 1.277.258 2.294.612 3.147a6.919 6.919 0 001.637 2.519 6.919 6.919 0 002.519 1.637c.853.354 1.87.554 3.147.612C9.332 23.987 9.741 24 12 24s2.668-.013 3.948-.072c1.277-.058 2.294-.258 3.147-.612a6.919 6.919 0 002.519-1.637 6.919 6.919 0 001.637-2.519c.354-.853.554-1.87.612-3.147.059-1.28.072-1.689.072-3.948s-.013-2.668-.072-3.948c-.058-1.277-.258-2.294-.612-3.147a6.919 6.919 0 00-1.637-2.519A6.919 6.919 0 0019.095.684c-.853-.354-1.87-.554-3.147-.612C14.668.013 14.259 0 12 0z"/>
-          <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998z"/>
-          <circle cx="18.406" cy="5.594" r="1.44"/>
-        </svg>
-      </a>
-
-      <a href="mailto:apartmanizeneva1@gmail.com" aria-label="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.511l-8 5.011-8-5.011V6h16zm-16 12V8.489l7.445 4.66a1 1 0 001.11 0L20 8.489V18H4z"/>
-        </svg>
-      </a>
-
-    
-      <a href="tel:+38269761184" aria-label="Telefon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 7a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z"/>
-        </svg>
-      </a>
-
-   
-      <a href="https://www.google.com/maps/place/Apartmani+Zeneva/@41.9034468,19.3012071,17z/data=!3m1!4b1!4m6!3m5!1s0x134e1751d28f37a7:0x8d92400ec26886f0!8m2!3d41.9034469!4d19.306078!16s%2Fg%2F11kh2_x659?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" aria-label="Lokacija">
-        <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
-        </svg>
-      </a>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><img src="logo.jpg" alt="Apartmani Zeneva"><span class="footer-brand-text">Apartmani Zeneva</span></div>
+      <p class="footer-desc">Vaša oaza mira i užitka na Velikoj plaži u Ulcinju. Moderno opremljeni apartmani okruženi mediteranskim zelenilom.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/apartmani_zeneva" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.428.403a4.92 4.92 0 011.74 1.09 4.92 4.92 0 011.09 1.741c.163.459.347 1.258.403 2.428.058 1.267.07 1.647.07 4.851s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.403 2.428a4.92 4.92 0 01-1.09 1.74 4.92 4.92 0 01-1.741 1.09c-.459.163-1.258.347-2.428.403-1.267.058-1.647.07-4.851.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.428-.403a4.92 4.92 0 01-1.74-1.09 4.92 4.92 0 01-1.09-1.741c-.163-.459-.347-1.258-.403-2.428C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.056-1.17.24-1.97.403-2.428a4.92 4.92 0 011.09-1.74A4.92 4.92 0 015.467 2.89c.459-.163 1.258-.347 2.428-.403C8.964 2.175 9.344 2.163 12 2.163zm0 1.802c-3.158 0-3.51.012-4.745.068-.943.043-1.454.2-1.794.333-.452.176-.775.386-1.114.725-.339.339-.549.662-.725 1.114-.133.34-.29.851-.333 1.794-.056 1.235-.068 1.587-.068 4.745s.012 3.51.068 4.745c.043.943.2 1.454.333 1.794.176.452.386.775.725 1.114.339.339.662.549 1.114.725.34.133.851.29 1.794.333 1.233.056 1.585.068 4.745.068 3.16 0 3.512-.012 4.745-.068.943-.043 1.454-.2 1.794-.333.452-.176.775-.386 1.114-.725.339-.339.549-.662.725-1.114.133-.34.29-.851.333-1.794.056-1.235.068-1.587.068-4.745s-.012-3.51-.068-4.745c-.043-.943-.2-1.454-.333-1.794a3.09 3.09 0 00-.725-1.114 3.09 3.09 0 00-1.114-.725c-.34-.133-.851-.29-1.794-.333-1.233-.056-1.585-.068-4.745-.068zm0 4.594a5.441 5.441 0 110 10.882 5.441 5.441 0 010-10.882zm0 1.802a3.64 3.64 0 100 7.279 3.64 3.64 0 000-7.279zm6.92-2.013a1.31 1.31 0 11-2.621 0 1.31 1.31 0 012.621 0z"/></svg>
+        </a>
+        <a href="mailto:apartmanizeneva1@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.511l-8 5.011-8-5.011V6h16zm-16 12V8.489l7.445 4.66a1 1 0 001.11 0L20 8.489V18H4z"/></svg>
+        </a>
+        <a href="tel:+38269761184" aria-label="Telefon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 7a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z"/></svg>
+        </a>
+        <a href="https://www.google.com/maps/place/Apartmani+Zeneva/@41.9034468,19.3012071,17z" target="_blank" aria-label="Lokacija">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+        </a>
+      </div>
     </div>
-
-    <div class="footer-info">
-      <p>Rezervacija: +382 69 761 184 | +382 69 209 203 (Viber / WhatsApp)</p>
-      <p>Email: <a href="mailto:apartmanizeneva1@gmail.com">apartmanizeneva1@gmail.com</a></p>
-      <p>Lokacija: Ulcinj, Donji Stoj</p>
+    <div>
+      <div class="footer-col-title">Brzi linkovi</div>
+      <ul class="footer-links">
+        <li><a href="#smjestaj">O apartmanima</a></li>
+        <li><a href="#galerija">Galerija</a></li>
+        <li><a href="#lokacija">Lokacija</a></li>
+        <li><a href="#utisci">Recenzije</a></li>
+      </ul>
     </div>
-
-    <p class="footer-copy">© 2025 Apartmani Zeneva. Sva prava zadržana.</p>
+    <div>
+      <div class="footer-col-title">Kontakt</div>
+      <ul class="footer-links">
+        <li><a href="tel:+38269761184">📞 +382 69 761 184</a></li>
+        <li><a href="tel:+38269209203">💬 +382 69 209 203</a></li>
+        <li><a href="mailto:apartmanizeneva1@gmail.com">✉️ apartmanizeneva1@gmail.com</a></li>
+        <li><a href="https://www.google.com/maps/place/Apartmani+Zeneva/@41.9034468,19.3012071,17z" target="_blank">📍 Ulcinj, Donji Stoj</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Apartmani Zeneva. Sva prava zadržana.</span>
+    <span>Ulcinj · Crna Gora</span>
   </div>
 </footer>
-<script src="script.js"></script>
 
+<button class="scroll-top" id="scrollTop">↑</button>
 
+<script>
+// ===== GALLERY DATA =====
+const galleryData = [
+  { src: 'zgrada.jpg', cat: 'eksterijer', label: 'Eksterijer zgrade' },
+  { src: 'sobalabudovi1.jpg', cat: 'enterijer', label: 'Spavaća soba' },
+  { src: 'sobalabudovi2.jpg', cat: 'enterijer', label: 'Spavaća soba' },
+  { src: 'sobaplava.jpg', cat: 'enterijer', label: 'Soba sa tri kreveta' },
+  { src: 'slika1.jpg', cat: 'enterijer', label: 'Spavaća soba' },
+  { src: 'slika3.jpg', cat: 'enterijer', label: 'Dnevni boravak' },
+  { src: 'slika4.jpg', cat: 'enterijer', label: 'Soba' },
+  { src: 'slika5.jpg', cat: 'enterijer', label: 'Soba' },
+  { src: 'slika6.jpg', cat: 'enterijer', label: 'Soba' },
+  { src: 'novakuhinja1.jpg', cat: 'kuhinja', label: 'Moderna kuhinja' },
+  { src: 'novakuhinja2.jpg', cat: 'kuhinja', label: 'Kuhinja' },
+  { src: 'kuhinja.jpg', cat: 'kuhinja', label: 'Kuhinja' },
+  { src: 'kuhinja2.jpg', cat: 'kuhinja', label: 'Kuhinja' },
+  { src: 'slika7.jpg', cat: 'enterijer', label: 'Enterijer' },
+  { src: 'slika8.jpg', cat: 'enterijer', label: 'Enterijer' },
+  { src: 'slika9.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika10.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika11.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'terasaručavanje.jpg', cat: 'terasa', label: 'Terasa za ručavanje' },
+  { src: 'slika12.jpg', cat: 'terasa', label: 'Pogled' },
+  { src: 'slika13.jpg', cat: 'terasa', label: 'Pogled na more' },
+  { src: 'terasa.jpg', cat: 'terasa', label: 'Terasa' },
+  { src: 'terasa2.jpg', cat: 'terasa', label: 'Terasa' },
+  { src: 'slika14.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika15.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika16.jpg', cat: 'enterijer', label: 'Dekoracija' },
+  { src: 'slika17.jpg', cat: 'enterijer', label: 'Dekoracija' },
+  { src: 'slika18.jpg', cat: 'terasa', label: 'Pogled' },
+  { src: 'slika19.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika20.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'kupatilonovo1.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'kupatilonovo2.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'wc.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'wc2.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'wc3.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'wc4.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'wc5.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'wc6.jpg', cat: 'kupatilo', label: 'Kupatilo' },
+  { src: 'slika21.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika22.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika23.jpg', cat: 'enterijer', label: 'Detalj' },
+  { src: 'slika24.jpg', cat: 'eksterijer', label: 'Okruženje' }
+];
 
+const grid = document.getElementById('galleryGrid');
+function renderGallery(filter) {
+  grid.innerHTML = '';
+  const items = filter === 'all' ? galleryData : galleryData.filter(g => g.cat === filter);
+  items.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'gitem';
+    div.dataset.src = item.src;
+    div.style.opacity = '0';
+    div.style.transform = 'translateY(18px)';
+    div.innerHTML = `<img src="${item.src}" alt="${item.label}" loading="lazy"><div class="gitem-overlay"><span class="gitem-zoom">🔍 ${item.label}</span></div>`;
+    div.addEventListener('click', () => openLightbox(item.src, items.map(x => x.src)));
+    grid.appendChild(div);
+    setTimeout(() => {
+      div.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1)';
+      div.style.opacity = '1';
+      div.style.transform = 'translateY(0)';
+    }, 30 + i * 45);
+  });
+}
+renderGallery('all');
 
+document.querySelectorAll('.gal-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.gal-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    renderGallery(tab.dataset.filter);
+  });
+});
 
+// ===== LIGHTBOX =====
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+let lbList = [];
+let lbIdx = 0;
+function openLightbox(src, list) {
+  lbList = list;
+  lbIdx = list.indexOf(src);
+  lbImg.src = src;
+  lightbox.classList.add('open');
+}
+document.getElementById('lbClose').onclick = () => lightbox.classList.remove('open');
+document.getElementById('lbPrev').onclick = () => { lbIdx = (lbIdx - 1 + lbList.length) % lbList.length; lbImg.src = lbList[lbIdx]; };
+document.getElementById('lbNext').onclick = () => { lbIdx = (lbIdx + 1) % lbList.length; lbImg.src = lbList[lbIdx]; };
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') lightbox.classList.remove('open');
+  if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+  if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+});
+
+// ===== NAV SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 600);
+});
+
+// ===== MOBILE NAV =====
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+const navOverlay = document.getElementById('navOverlay');
+function toggleMobileNav(open) {
+  mobileNav.classList.toggle('open', open);
+  navOverlay.classList.toggle('open', open);
+}
+hamburger.addEventListener('click', () => toggleMobileNav(!mobileNav.classList.contains('open')));
+navOverlay.addEventListener('click', () => toggleMobileNav(false));
+document.getElementById('mobileNavClose').addEventListener('click', () => toggleMobileNav(false));
+document.querySelectorAll('.mobile-nav a').forEach(a => a.addEventListener('click', () => toggleMobileNav(false)));
+
+// ===== SCROLL TOP =====
+document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ===== REVEAL ON SCROLL =====
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// POI stagger
+const poiObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const siblings = [...e.target.parentElement.children];
+    setTimeout(() => e.target.classList.add('visible'), siblings.indexOf(e.target) * 100);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.poi-row').forEach(el => poiObs.observe(el));
+
+// ===== COUNTERS =====
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseFloat(el.dataset.target);
+    const dec = parseInt(el.dataset.decimal || 0);
+    const start = Date.now();
+    const dur = 1600;
+    const tick = () => {
+      const t = Math.min((Date.now() - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = dec ? (target * eased).toFixed(dec) : Math.floor(target * eased).toLocaleString();
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    tick();
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num[data-target]').forEach(c => counterObs.observe(c));
+</script>
 </body>
 </html>
-
-
-
-
